@@ -23,6 +23,8 @@ def make_prompt(cot_prompt, cot_labels):
     prompt = ''
     for example, label in zip(cot_prompt, cot_labels):
         prompt += 'Q: ' + example['question'] + '\nA: ' + example['answer'] + 'The answer is ' + str(label) + '\n\n'
+    with open('./prompt_for_CoT_method', 'w') as prompt_file:
+        prompt_file.write(prompt)
     return prompt
 
 def get_input_and_prompt(test_path):

@@ -22,6 +22,8 @@ def make_prompt(cot_prompt, cot_answers):
     prompt = ''
     for example, answer in zip(cot_prompt, cot_answers):
         prompt += 'Q: ' + example['question'] + '\nA: ' + example['answer'] + 'The answer is ' + str(answer) + '\n\n'
+    with open('./prompt_for_self-consistency_method', 'w') as prompt_file:
+        prompt_file.write(prompt)
     return prompt
 
 def get_input_and_prompt(test_path):
