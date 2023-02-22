@@ -1,16 +1,16 @@
 import re
 import json
 import torch
-from tqdm import tqdm
+from tqdm import tqdm, trange
 from transformers import BloomTokenizerFast
 from petals import DistributedBloomForCausalLM
 from random import shuffle
 
-
 TASK_COUNT = 100
+ITERATIONS_COUNT = 8
 PARAMS = {
-    "do_sample": None,
-    "temperature": 1.0,
+    "do_sample": True,
+    "temperature": 0.7,
     "top_k": None,
     "top_p": None,
     "num_beams": 1,
@@ -18,11 +18,10 @@ PARAMS = {
     "num_return_sequences": None,
     "stop": ["Q:"]
 }
-
-def make_prompt(cot_prompt, cot_labels):
+def make_prompt(cot_prompt, cot_answers):
     prompt = ''
-    for example, label in zip(cot_prompt, cot_labels):
-        prompt += 'Q: ' + example['question'] + '\nA: ' + example['answer'] + 'The answer is ' + str(label) + '\n\n'
+    for example, answer in zip(cot_prompt, cot_answers):
+        prompt += 'Q: ' + example['question'] + '\nA: ' + example['answer'] + 'The answer is ' + str(answer) + '\n\n'
     return prompt
 
 def get_input_and_prompt(test_path):
@@ -55,18 +54,19 @@ if __name__ == '__main__':
         "Parameters_of_generation": PARAMS,
         "Outputs": []
     }
-
     for input, answer in tqdm(zip(input_list[:TASK_COUNT], answer_list[:TASK_COUNT])):
         task_data = {
-            "Question": input['question'],
+            "Question" : input['question'],
             "Answer": str(answer),
-            "BLOOM_answer": None
+            "BLOOM_answers": []
         }
-        tokenized_input = tokenizer(cot_prompt + 'Q: ' + input['question'] + '\nA: ', return_tensors="pt")[
+        for i in trange(ITERATIONS_COUNT):
+            tokenized_input = tokenizer(cot_prompt + 'Q: ' + input['question'] + '\nA: ', return_tensors="pt")[
             "input_ids"].cuda()
-        output = model.generate(tokenized_input, **PARAMS)
-        shift = len(cot_prompt) + len(input['question']) + 3
-        task_data["BLOOM_answer"] = tokenizer.decode(output[0])[shift:]
+            output = model.generate(tokenized_input, **PARAMS)
+            result = {}
+            shift = len(cot_prompt) + len(input['question']) + 3
+            task_data["BLOOM_answers"].append(tokenizer.decode(output[0])[shift:])
         results["Outputs"].append(task_data)
-        with open('./output_CoT_method', 'w') as output_file:
+        with open('./output_self-consistency_method', 'w') as output_file:
             json.dump(results, output_file)
