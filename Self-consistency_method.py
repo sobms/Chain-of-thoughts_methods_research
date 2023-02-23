@@ -5,6 +5,7 @@ from tqdm import tqdm, trange
 from transformers import BloomTokenizerFast
 from petals import DistributedBloomForCausalLM
 from random import shuffle
+import sys
 
 TASK_COUNT = 100
 ITERATIONS_COUNT = 8
@@ -26,7 +27,7 @@ def make_prompt(cot_prompt, cot_answers):
         prompt_file.write(prompt)
     return prompt
 
-def get_input_and_prompt(test_path):
+def get_input_and_prompt(test_path, prompt):
     with open(test_path, 'r') as data_file:
         test_problems = data_file.readlines()
     # extract final answer
@@ -37,25 +38,37 @@ def get_input_and_prompt(test_path):
     combined = list(zip(answer_list, input_list))
     shuffle(combined)
     answer_list[:], input_list[:] = zip(*combined)
-
-    cot_prompt = make_prompt(input_list[:11], answer_list[:11])
+    if prompt is not None:
+        cot_prompt = prompt
+    else:
+        cot_prompt = make_prompt(input_list[:11], answer_list[:11])
     answer_list = answer_list[11:]
     input_list = input_list[11:]
     return input_list, answer_list, cot_prompt
 
 if __name__ == '__main__':
+    results = {
+            "Parameters_of_generation": PARAMS,
+            "Outputs": []
+    }
+    prompt = None
+    if len(sys.argv) == 3:
+        prompt_file_path = sys.argv[1]
+        with open(prompt_file_path, 'r') as prompt_file:
+            prompt = prompt_file.read()
+        results = json.load(open(sys.argv[2], 'r'))
+        TASK_COUNT -= len(results["Outputs"])
+    elif len(sys.argv) != 1:
+        print("Incorrect number of params")
+        exit(0)
     test_path = './grade-school-math/grade_school_math/data/test.jsonl'
-    input_list, answer_list, cot_prompt = get_input_and_prompt(test_path)
+    input_list, answer_list, cot_prompt = get_input_and_prompt(test_path, prompt)
 
     MODEL_NAME = "bigscience/bloomz-petals"
     tokenizer = BloomTokenizerFast.from_pretrained(MODEL_NAME)
     model = DistributedBloomForCausalLM.from_pretrained(MODEL_NAME, request_timeout=300, daemon_startup_timeout=120)
     model = model.cuda()
 
-    results = {
-        "Parameters_of_generation": PARAMS,
-        "Outputs": []
-    }
     for input, answer in tqdm(zip(input_list[:TASK_COUNT], answer_list[:TASK_COUNT])):
         task_data = {
             "Question" : input['question'],
