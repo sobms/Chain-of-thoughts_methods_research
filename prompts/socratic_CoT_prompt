@@ -1,0 +1,39 @@
+Q: Tobias is buying a new pair of shoes that costs $95. He has been saving up his money each month for the past three months. He gets a $5 allowance a month. He also mows lawns and shovels driveways. He charges $15 to mow a lawn and $7 to shovel. After buying the shoes, he has $15 in change. If he mows 4 lawns, how many driveways did he shovel? 
+A: How much money did Tobias save up? ** He saved up $110 total because 95 + 15 = 110.
+How much money did Tobias save from his allowance? ** He saved $15 from his allowance because 3 x 5 = 15.
+How much money did Tobias earn mowing lawns? ** He earned $60 mowing lawns because 4 x 15 = 60.
+How much money did Tobias earn shoveling driveways? ** He earned $35 shoveling driveways because 110 - 60 - 15 = 35.
+How many driveways did Tobias shovel? ** He shoveled 5 driveways because 35 / 7 = 5. 
+The answer is 5.
+Q: Hans booked a room in a hotel. The hotel has 10 floors with 10 identical rooms on each floor. Because of an accident, the last floor is unavailable for the guests. Considering there are no other guests, in how many different rooms could Hans be checked in?
+A: How many rooms are there in total? ** The hotel has in total 10 floors * 10 rooms/floor = 100 rooms.
+How many rooms are there in total? ** One floor is unavailable, so Hans could be checked into 100 rooms - 10 rooms = 90 available rooms. 
+The answer is 90.
+Q: A school principal is booking hotel rooms for a class of 30 students to stay at during an overnight field trip. Each of the hotel's rooms has two queen size beds, which can fit two students each, and a pull-out couch, which can fit one student.  How many rooms does the principal need to book to fit all of the students in the class?
+A: How many students can each room fit? ** Each room can fit 2*2 + 1 = 5 students.
+How many rooms does the principal need to book to fit all of the students in the class? ** Thus, the principal needs to book 30/5 = 6 rooms to fit everyone.
+The answer is 6.
+Q: Nadia was sent to the flower shop to buy 20 roses and 3/4 times as many Lillies as roses. If roses cost $5 each and lilies cost twice as much each, calculate the total amount of money Nadia used to buy the flowers.
+A: How much do roses cost? ** The total cost for roses is 20*5 = $100
+How many lilies did Nadia buy? ** Nadia bought 3/4*20 = 15 lilies.
+How much do lilies cost? ** Each lily costs 5*2 = $10
+How much money did Nadia use to buy lilies? ** She used 10*15 = $150 in total to buy lilies.
+How much money did Nadia use to buy the flowers? ** To buy all the flowers, Nadia used 150+100 = $250
+The answer is 250.
+Q: For every 1 minute that Carlotta sings on stage during the final opera performance, she spends an additional 3 minutes practicing and 5 minutes throwing temper tantrums. If her final stage performance is 6 minutes long, what is the total combined amount of time, in minutes, that she spends practicing, throwing tantrums, and singing in the final stage performance?
+A: How many minutes does Carlotta spend practicing? ** For each 6 minutes she performs, Carlotta spends 6 * 3 minutes = 18 minutes practicing.
+How many minutes does Carlotta spend throwing tantrums? ** For each 6 minutes she performs, Carlotta throws tantrums for 6 * 5 minutes = 30 minutes.
+How many minutes does Carlotta spend on all three activities? ** Thus, in total, for each 6 minutes of performance time, she spends 18 minutes + 30 minutes + 6 minutes = 54 minutes on all three activities.
+The answer is 54.
+Q: There is a fruit display that has apples, oranges, and bananas.  There are twice as many apples as oranges, and there are twice as many oranges as bananas.  How many fruits are on the display in total if there are 5 bananas on the display?
+A: How many oranges are there? ** We start by finding out that since there are twice as many oranges as the 5 bananas, this means there are 5*2=10 oranges.
+How many apples are there? ** Since there are twice as many apples as the 10 oranges, this means there 10*2=20 apples.
+How many fruits are there in total? ** In total, this means there are 20+10+5= 35 fruits on the display.
+The answer is 35.
+Q: Uncle Bradley has a $1000 bill that he wants to change into smaller bills so he could give them to his nieces and nephews. He wants to change 3/10 of the money into $50 bills while the rest into $100 bills. How many pieces of bills will Uncle Bradley have in all?
+A: How much money will be changed into $50 bills? ** There will be $1000 x 3/10 = $300 worth of money that will be changed into $50 bills.
+How many pieces of $50 bills will Uncle Bradley have? ** Uncle Bradley will have $300/$50 = 6 pieces of $50 bills.
+How much money will be changed into $100 bills? ** He will change $1000 - $300 = $700 worth of money into $100 bills.
+How many pieces of $100 bills will Uncle Bradley have? ** So there will be $700/$100 = 7 pieces of $100 bills.
+How many pieces of bills will Uncle Bradley have in all? ** Thus, there will be a total of 6 + 7 = 13 pieces of $50 and $100 bills in all.
+The answer is 13.
